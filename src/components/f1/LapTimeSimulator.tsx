@@ -243,7 +243,7 @@ const LapTimeSimulator: React.FC = () => {
           <h2 className="text-3xl font-bold text-white">F1 Lap Time Simulator</h2>
         </div>
         <div className="text-sm text-gray-400">
-          Monaco GP 2025
+          Canada GP 2025
         </div>
       </div>
 
