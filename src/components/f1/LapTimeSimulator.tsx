@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Clock, Settings, TrendingUp, TrendingDown, Minus, Play, RotateCcw } from 'lucide-react';
+import React, { useState } from 'react';
+import { Clock, Settings, TrendingUp, TrendingDown, Play, RotateCcw } from 'lucide-react';
 
 // Types
 interface TireCompound {
@@ -104,7 +104,7 @@ const LapTimeSimulator: React.FC = () => {
   const [stintLength, setStintLength] = useState(25);
 
   // More accurate lap time calculation
-  const calculateLapTimeFactors = (conditions: TrackConditions, tire: string, fuel: number, lapNumber: number = 1): LapTimeFactors => {
+  const calculateLapTimeFactors = (conditions: TrackConditions, tire: string, fuel: number): LapTimeFactors => {
     const compound = tireCompounds[tire];
     
     // Temperature impact (optimal around 20-25°C air, 30-35°C track)
@@ -160,7 +160,7 @@ const LapTimeSimulator: React.FC = () => {
   };
 
   const getCurrentLapTime = (): LapTimeFactors => {
-    return calculateLapTimeFactors(trackConditions, selectedTire, fuelLoad, 1);
+    return calculateLapTimeFactors(trackConditions, selectedTire, fuelLoad);
   };
 
   // Enhanced simulation with more realistic degradation
@@ -181,7 +181,7 @@ const LapTimeSimulator: React.FC = () => {
       const tireDegradation = baseDegradation * degradationMultiplier;
       
       // Calculate base lap time
-      const baseLapTime = calculateLapTimeFactors(trackConditions, selectedTire, currentFuel, lap);
+      const baseLapTime = calculateLapTimeFactors(trackConditions, selectedTire, currentFuel);
       const finalLapTime = baseLapTime.estimatedLapTime + tireDegradation;
       
       // Track best lap for delta calculation
